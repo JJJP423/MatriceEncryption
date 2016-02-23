@@ -8,7 +8,6 @@ import gui.SubmitButtonHandler;
 import static org.junit.Assert.assertTrue;
 
 public class ButtonHandlerTests {
-	//hgvjh
 	
 	String input00 = "1 2; 3 4;";
 	int[][] expected00={{1,2},
