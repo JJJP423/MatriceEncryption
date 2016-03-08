@@ -2,42 +2,54 @@ package commandLine;
 
 import java.util.Scanner;
 
+import javax.swing.SwingUtilities;
+
 import code.FileIO;
 import code.MatriceEncryption;
 import gui.ButtonHandler;
+import gui.Gui;
 
 public class ScannerFunctions implements Runnable{
 	
 
-	Scanner scan;
-	String key;
-	String text;
-	String filename;
-	String argument;
-	String encryptedString;
-	String decryptedString;
-	String yesNo;
-	int[][] encryptedMatrice;
-	int[][] convertedKey;
-	String encrypt 	= "-e";
-	String decrypt 	= "-d";
-	String useKey  	= "-k";
-	String useText 	= "-t";
-	String importK 	= "-K";
-	String importT 	= "-T";
-	String exportK 	= "-oK";
-	String exportT 	= "-oT";
-	String exportKT = "-oKT";
+	boolean gui;
+	private Scanner scan;
+	private String key;
+	private String text;
+	private String filename;
+	private String argument;
+	private String yesNo;
+	private int[][] encryptedMatrice;
+	private int[][] convertedKey;
+	private String encrypt 	= "-e";
+	private String decrypt 	= "-d";
+	private String useKey  	= "-k";
+	private String useText 	= "-t";
+	private String importK 	= "-K";
+	private String importT 	= "-T";
+	private String exportK 	= "-oK";
+	private String exportT 	= "-oT";
+	private String exportKT = "-oKT";
+	
+	public ScannerFunctions(boolean g){
+		gui = g;
+	}
 
 	@Override
 	public void run() {
-		scan = new Scanner(System.in);
-		do{
-		System.out.println("Please type -e to encrypt or -d to decrypt: ");
-		argument = input();
-		}while(!(argument.equals(encrypt)) && !(argument.equals(decrypt)));
-		process(argument);
-		scan.close();
+			if(gui){
+			askForKey();
+			askForText();
+			SwingUtilities.invokeLater(new Gui(key,text));
+		}else{
+			scan = new Scanner(System.in);
+			do{
+			System.out.println("Please type -e to encrypt or -d to decrypt: ");
+			argument = input();
+			}while(!(argument.equals(encrypt)) && !(argument.equals(decrypt)));
+			process(argument);
+			scan.close();
+		}
 	}
 	
 	private void process(String arg) {
