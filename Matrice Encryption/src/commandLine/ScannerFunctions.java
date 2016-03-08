@@ -5,8 +5,8 @@ import java.util.Scanner;
 import javax.swing.SwingUtilities;
 
 import code.FileIO;
+import code.Functionality;
 import code.MatriceEncryption;
-import gui.ButtonHandler;
 import gui.Gui;
 
 public class ScannerFunctions implements Runnable{
@@ -56,13 +56,13 @@ public class ScannerFunctions implements Runnable{
 		askForKey();
 		askForText();
 		if(arg.equals(encrypt)){
-			convertedKey = ButtonHandler.convertToMatrix(key);
+			convertedKey = Functionality.convertToMatrix(key);
 			encryptedMatrice = MatriceEncryption.XbyXencrypt(text, convertedKey);
-			text = ButtonHandler.convertFromMatrix(encryptedMatrice);
+			text = Functionality.convertFromMatrix(encryptedMatrice);
 		}
 		if(arg.equals(decrypt)){
-			convertedKey = ButtonHandler.convertToMatrix(key);
-			encryptedMatrice = ButtonHandler.convertToMatrix(text);
+			convertedKey = Functionality.convertToMatrix(key);
+			encryptedMatrice = Functionality.convertToMatrix(text);
 			text = MatriceEncryption.XbyXdecrypt(encryptedMatrice, convertedKey);
 		}
 		do{

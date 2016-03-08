@@ -85,7 +85,7 @@ public class MatriceEncryptionTests {
 					 {7,8}};
 	
 	private void XbyXencrypt(String input, int[][] expected, int[][] key){
-		int[][] actual = me.XbyXencrypt(input,key);
+		int[][] actual = MatriceEncryption.XbyXencrypt(input,key);
 		assertTrue("The expected return value was "+expected+" but "+actual+" was returned", Arrays.deepEquals(expected, actual));
 	}
 	
@@ -104,7 +104,7 @@ public class MatriceEncryptionTests {
 	@Test public void test19(){ 	XbyXdecrypt(expected09,key09,toEncrypt09); };
 	
 	private void XbyXdecrypt(int[][] input,int[][] key, String expected){
-		String actual = me.XbyXdecrypt(input,key);
+		String actual = MatriceEncryption.XbyXdecrypt(input,key);
 		assertTrue("The expected return value was "+expected+" but "+actual+" was returned", expected.equals(actual));
 	}
 

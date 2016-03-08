@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 
 public class Gui implements Runnable{
@@ -99,5 +100,21 @@ public class Gui implements Runnable{
 		window.pack();
 		window.setVisible(true);
 	}
+	
+	public static void getInfo(String toDisplay, int typeCode, char kt, String aKey, String someText, JTextArea key, JTextArea text){
+		JFrame getInfo = new JFrame();
+		JLabel queryInfo = new JLabel(toDisplay);
+		JTextField retrieveInfo = new JTextField();
+		JButton submit = new JButton("Submit");
+		GridLayout gl = new GridLayout(3,1);
+		getInfo.setLayout(gl);
+		getInfo.add(queryInfo);
+		getInfo.add(retrieveInfo);
+		getInfo.add(submit);
+		ActionListener al = new SubmitButtonHandler(typeCode,kt,aKey,someText,getInfo,retrieveInfo,key,text);
+		submit.addActionListener(al);
+		getInfo.pack();
+		getInfo.setVisible(true);			
+}
 
 }

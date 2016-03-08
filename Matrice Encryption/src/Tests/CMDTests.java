@@ -28,7 +28,6 @@ public class CMDTests {
 	String exportT = "-oT";
 	int pos = 0;
 	
-	/*
 	private void evaluateArguments(String toSet1, String toSet2, String cantBe1, String cantBe2, // Testing whether evaluate input can find the expected parameter in the array
 									int errorCode1, int errorCode2, int errorCode3,
 									String from, String checkFor1, String checkFor2,
@@ -119,6 +118,7 @@ public class CMDTests {
 			decrypt,importK,importT,3,args,args[3]);
 		}
 	
+	/*
 	private void outputKey(int pos, String key, String text, String keyCreated, String textCreated,
 								boolean didCreateKey, boolean didCreateText, String filename, String[] args){
 		boolean expected = true;
@@ -135,6 +135,7 @@ public class CMDTests {
 		boolean actual = didCreateKey;
 		assertTrue("The expected value was "+expected+" but what was returned was "+actual, expected == actual);
 	}
+	
 	
 	@Test public void outputKeyTest00(){
 		String filename = this.filename+"Key00";

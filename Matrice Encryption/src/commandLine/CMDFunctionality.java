@@ -2,9 +2,8 @@ package commandLine;
 
 import java.util.ArrayList;
 
+import code.Functionality;
 import code.MatriceEncryption;
-import gui.ButtonHandler;
-import gui.SubmitButtonHandler;
 
 public class CMDFunctionality implements Runnable{
 	
@@ -145,9 +144,9 @@ public class CMDFunctionality implements Runnable{
 		 System.out.println("Checking argument "+pos+" for a valid argument or parameter");
 		encryptWith = evaluateInput(encryptWith,toEncrypt,decrypt, help, FOLLOWING_E, FOLLOWING_K, FOLLOWING_T, encrypt, importK, importT, pos, args);
 		toEncrypt = evaluateInput(encryptWith,toEncrypt,decrypt, help, FOLLOWING_E, FOLLOWING_K, FOLLOWING_T, encrypt, importK, importT, pos, args);
-		int[][] key = ButtonHandler.convertToMatrix(encryptWith);
+		int[][] key = Functionality.convertToMatrix(encryptWith);
 		int[][] encryptedMatrice = MatriceEncryption.XbyXencrypt(toEncrypt, key);
-		String encryptedString = ButtonHandler.convertFromMatrix(encryptedMatrice);
+		String encryptedString = Functionality.convertFromMatrix(encryptedMatrice);
 		 System.out.println(toEncrypt+" was encrypted with the key: "+encryptWith);
 		 System.out.println("The result was: "+encryptedString);
 		if(commandLine){
@@ -162,8 +161,8 @@ public class CMDFunctionality implements Runnable{
 		 System.out.println("Checking argument "+pos+" for a valid argument or parameter");
 		decryptWith = evaluateInput(decryptWith,toDecrypt,encrypt, help, FOLLOWING_D, FOLLOWING_K, FOLLOWING_T, decrypt, importK, importT, pos, args);
 		toDecrypt = evaluateInput(decryptWith,toDecrypt,encrypt, help, FOLLOWING_D, FOLLOWING_K, FOLLOWING_T, decrypt, importK, importT, pos, args);
-		int[][] key = ButtonHandler.convertToMatrix(decryptWith);
-		int[][] encrypted = ButtonHandler.convertToMatrix(toDecrypt);
+		int[][] key = Functionality.convertToMatrix(decryptWith);
+		int[][] encrypted = Functionality.convertToMatrix(toDecrypt);
 		String decrypted = MatriceEncryption.XbyXdecrypt(encrypted, key);
 		 System.out.println(toDecrypt+" was encrypted with the key: "+decryptWith);
 		 System.out.println("The result was: "+decrypted);
@@ -173,7 +172,7 @@ public class CMDFunctionality implements Runnable{
 			if(didCreateText){ System.out.println("Text File Created"); }
 		}
 	}
-	
+	// Need to implement input still
 	private String iK(String filename){
 		
 		return "";
@@ -238,30 +237,6 @@ public class CMDFunctionality implements Runnable{
 				}
 			}
 		}
-			/*
-			else{
-			
-				 System.out.println("Assuming parameter at "+pos+" is valid, using it");
-				toSet1 = args[pos];							// Key was at pos
-				pos++;												// Should be 3
-				 System.out.println("Checking "+pos+" for a valid argument");
-				if(args[pos].equals(importT)){						// Checking if text needs to be imported
-					pos++;											// Should be 4
-					 System.out.println("Argument valid, checking "+pos+" for valid parameter");
-					if(allowed.contains(args[pos])){				// Invalid argument at pos
-						System.out.println("Error code:"+errorCode3+" Invalid arguments followed "+checkFor2);
-						System.exit(errorCode3);
-					}else{
-						filename = args[pos];  						// Assumes input following -T is a valid file at pos
-						toSet2 = iT(filename);						// Tries to import the file of the text to be used
-						 System.out.println("Assuming parameter at "+pos+" is valid, importing it: "+toSet2);
-					}
-				}else{
-					toSet2 = args[pos];								// Should be 3, Text is at pos
-					 System.out.println("Assuming parameter at "+pos+" is valid, using it: "+toSet2);
-				}
-			}
-			*/
 		return args[pos];
 	}
 	
@@ -279,7 +254,7 @@ public class CMDFunctionality implements Runnable{
 			}else{
 				 System.out.println("Assumed that argument "+pos+" is a valid parameter in the correct format");
 				filenameKey = args[pos];							// Assumes input following -oK is a valid file at pos
-				keyCreated = SubmitButtonHandler.inputOutput(0, 'k', key, text, filenameKey);	// Tries to output the file of the key to be save
+				keyCreated = Functionality.inputOutput(0, 'k', key, text, filenameKey);	// Tries to output the file of the key to be save
 				 System.out.println("The key file was created: "+keyCreated);
 			}
 			pos++;												// 
@@ -292,7 +267,7 @@ public class CMDFunctionality implements Runnable{
 						System.exit(FOLLOWING_oT);
 					}else{	
 						filenameText = args[pos];						// Assumes output following -oT is a valid file at pos
-						textCreated = SubmitButtonHandler.inputOutput(0, 't', key, text, filenameText);	// Tries to import the file of the text to be saved
+						textCreated = Functionality.inputOutput(0, 't', key, text, filenameText);	// Tries to import the file of the text to be saved
 						 System.out.println("The text file was created: "+textCreated);
 					}
 				}
@@ -308,7 +283,7 @@ public class CMDFunctionality implements Runnable{
 				}else{
 					 System.out.println("Assumed to be valid parameter in the correct format");
 					filenameText = args[pos];  						// Assumes input following -T is a valid file at pos
-					textCreated = SubmitButtonHandler.inputOutput(0, 't', key, text, filenameText);	// Tries to import the file of the text to be saved
+					textCreated = Functionality.inputOutput(0, 't', key, text, filenameText);	// Tries to import the file of the text to be saved
 					 System.out.println("The text file was created: "+textCreated);
 				}
 			}else{

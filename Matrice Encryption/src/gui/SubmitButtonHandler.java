@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import code.FileIO;
+import code.Functionality;
 
 public class SubmitButtonHandler implements ActionListener{	
 	
@@ -45,47 +45,17 @@ public class SubmitButtonHandler implements ActionListener{
 		if(kt=='k'){ System.out.println("key whose value is: "+aKey);}
 		if(kt=='t'){ System.out.println("text whose value is "+someText);}
 		*/
-		if(typeCode==0){ inputOutput(typeCode,kt,aKey,someText,aName); }
+		if(typeCode==0){ Functionality.inputOutput(typeCode,kt,aKey,someText,aName); }
 		if(typeCode==1){ 
 			if(kt == 'k'){
-				String inKey = inputOutput(typeCode,kt,aKey,someText,aName);
+				String inKey = Functionality.inputOutput(typeCode,kt,aKey,someText,aName);
 				keyField.setText(inKey);
 			}
 			if(kt == 't'){
-				String inText = inputOutput(typeCode,kt,aKey,someText,aName);
+				String inText = Functionality.inputOutput(typeCode,kt,aKey,someText,aName);
 				textField.setText(inText);
 			}
 		}
 		frameInfo.dispose();
 	}
-	
-	public static String inputOutput(int typeCode, char kt, String aKey, String someText, String aName){
-		String worked = "false";
-		Boolean did = false;
-		String fileExtension = ".jjr";
-		switch(typeCode){
-		case 0: // Indicates output
-			switch(kt){
-				case 'k': // Export Key
-					did = FileIO.writeStringToFile(aName+fileExtension, aKey);
-					if(did){ worked = "true"; }
-					return worked;
-				case 't': // Export Text
-					did = FileIO.writeStringToFile(aName+fileExtension, someText);
-					if(did){ worked = "true"; }
-					return worked;
-			}break;
-		case 1: //Indicates input
-			switch(kt){
-				case 'k': // Import Key
-					worked = FileIO.readFileToString(aName+fileExtension);
-					return worked;
-				case 't': // Import Text
-					worked = FileIO.readFileToString(aName+fileExtension);
-					return worked;
-				}break;
-			}
-		return worked;
-		}
-
 }

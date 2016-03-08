@@ -2,8 +2,8 @@ package Tests;
 
 import org.junit.Test;
 
+import code.Functionality;
 import gui.ButtonHandler;
-import gui.SubmitButtonHandler;
 
 import static org.junit.Assert.assertTrue;
 
@@ -69,7 +69,7 @@ public class ButtonHandlerTests {
 
 
 	private int[][] convertToMatrix(String toInterpret, int[][] expected){
-		int[][] actual = ButtonHandler.convertToMatrix(toInterpret);
+		int[][] actual = Functionality.convertToMatrix(toInterpret);
 		//assertTrue("The expected response was "+MatriceEncryption.showArrays(null, actual,null, null, null, null)+" but "+actual+" was returned", Arrays.deepEquals(expected, actual));
 		return actual;
 	}
@@ -81,8 +81,7 @@ public class ButtonHandlerTests {
 	
 	
 	private String convertFromMatrix(int[][] input, String expected){
-		ButtonHandler bh = new ButtonHandler(null, null);
-		String actual = bh.convertFromMatrix(input);
+		String actual = Functionality.convertFromMatrix(input);
 		//assertTrue("The expected answer was: "+expected+" but what was returned was: "+actual, expected.equals(actual));
 		return actual;
 	}
@@ -94,7 +93,7 @@ public class ButtonHandlerTests {
 	
 	private void encrypt(int[][] key, String toEncrypt, int[][] shouldBe){
 		ButtonHandler bh = new ButtonHandler(null, null);
-		String expected = ButtonHandler.convertFromMatrix(shouldBe);
+		String expected = Functionality.convertFromMatrix(shouldBe);
 		String actual = bh.encrypt(key, toEncrypt);
 		assertTrue(expected+" was supposed to be returned but "+actual+" was returned", expected.equals(actual));
 	}
@@ -106,7 +105,7 @@ public class ButtonHandlerTests {
 	
 	private void decrypt(int[][] key, int[][] toConvert, String expected){
 		ButtonHandler bh = new ButtonHandler(null, null);
-		String toDecrypt = ButtonHandler.convertFromMatrix(toConvert);
+		String toDecrypt = Functionality.convertFromMatrix(toConvert);
 		String actual = bh.decrypt(key, toDecrypt);
 		assertTrue(expected+" was supposed to be returned but "+actual+" was returned", expected.equals(actual));
 	}
@@ -119,18 +118,18 @@ public class ButtonHandlerTests {
 	private void outputFile(int typeCode, char kt, int[][] key, int[][] encrypted, String aName){
 		String aKey = "";
 		String someText = "";
-		if(key != null){ aKey = ButtonHandler.convertFromMatrix(key); }
-		if(encrypted != null){ someText = ButtonHandler.convertFromMatrix(encrypted); }
-		String actual = SubmitButtonHandler.inputOutput(typeCode, kt, aKey, someText, aName);
+		if(key != null){ aKey = Functionality.convertFromMatrix(key); }
+		if(encrypted != null){ someText = Functionality.convertFromMatrix(encrypted); }
+		String actual = Functionality.inputOutput(typeCode, kt, aKey, someText, aName);
 		String expected = "true";
 		assertTrue(expected+" was supposed to be returned but "+actual+" was returned", expected.equals(actual));
 	}
 	
 	private void inputFile(int typeCode, char kt, int[][] key, int[][] encrypted, String aName){
 		String expected = "";
-		if(key != null){ expected = ButtonHandler.convertFromMatrix(key); }
-		if(encrypted != null){ expected = ButtonHandler.convertFromMatrix(encrypted); }
-		String actual = SubmitButtonHandler.inputOutput(typeCode, kt, "", "", aName);
+		if(key != null){ expected = Functionality.convertFromMatrix(key); }
+		if(encrypted != null){ expected = Functionality.convertFromMatrix(encrypted); }
+		String actual = Functionality.inputOutput(typeCode, kt, "", "", aName);
 		assertTrue(expected+" was supposed to be returned but "+actual+" was returnedS", expected.equals(actual));
 	}
 	
