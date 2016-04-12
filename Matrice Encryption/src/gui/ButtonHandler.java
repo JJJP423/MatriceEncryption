@@ -37,6 +37,10 @@ public class ButtonHandler implements ActionListener{
 		textField.setText(decrypted);
 		return decrypted;
 	}
+	
+	private void sentenceToMatrix(){
+		
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
