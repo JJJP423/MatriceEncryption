@@ -10,31 +10,6 @@ import static org.junit.Assert.assertTrue;
 
 public class MatriceEncryptionTests {
 	
-	MatriceEncryption me = new MatriceEncryption();
-	String toEncrypt00 = "Hello"; 		int key00 = 4;	int[] expected00 = {288,404,432,432,444};
-	String toEncrypt01 = "WOTT";  		int key01 = 9;	int[] expected01 = {783,711,756,756};
-	String toEncrypt02 = "Fuck Tests"; 	int key02 = 8; 	int[] expected02 = {560,936,792,856,256,672,808,920,928,920};
-	String toEncrypt03 = "?,<+#"; 		int key03 = 5;	int[] expected03 = {315,220,300,215,175};
-	
-	private void _1byXMatriceEncryption(String input, int[] expected, int key){
-	int[] actual = me._1byXencrypt(input,key);
-	assertTrue("The expected return value was "+expected+" but "+actual+" was returned", Arrays.equals(expected, actual));
-	}
-	private void width1MatriceDecryption(String expected, int key, int[] input){
-		String actual = me._1byXdecrypt(input,key);
-		assertTrue("The expected return value was "+expected+" but "+actual+" was returned", expected.equals(actual));
-	}
-	
-	@Test public void test00(){ _1byXMatriceEncryption(toEncrypt00, expected00, key00); }
-	@Test public void test01(){ _1byXMatriceEncryption(toEncrypt01, expected01, key01); }
-	@Test public void test02(){ _1byXMatriceEncryption(toEncrypt02, expected02, key02); }
-	@Test public void test03(){ _1byXMatriceEncryption(toEncrypt03, expected03, key03); }
-	
-	@Test public void test04(){ width1MatriceDecryption(toEncrypt00,key00,expected00); }
-	@Test public void test05(){ width1MatriceDecryption(toEncrypt01,key01,expected01); }
-	@Test public void test06(){ width1MatriceDecryption(toEncrypt02,key02,expected02); }
-	@Test public void test07(){ width1MatriceDecryption(toEncrypt03,key03,expected03); }
-	
 	String toEncrypt04 = "Hello There"; 	
 	int[][] expected04 = {{564,722,721,786,727,224}, //{72,101,108,108,111,32,
 						  {684,918,951,990,969,228}};// 84,104,101,114,101,32}

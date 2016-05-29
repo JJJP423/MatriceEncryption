@@ -79,30 +79,8 @@ public class MatriceEncryption {
 				}
 			}
 		key = temp;
-		//showArrays(null, temp, null, null, null, null);
+//		showArrays(null, temp, null, null, null, null);
 		return key;
-	}
-
-	public int[] _1byXencrypt(String input, int key) {
-		int[] toReturn = new int[input.length()];
-		int[] interpreted = new int[input.length()];
-		// System.out.println("'"+input+"' is to be encrypted with the key "+key);
-		for(int i=0; i<input.length(); i++){ 
-			int converted = (int) input.charAt(i);
-			interpreted[i] = converted;
-		}
-		// System.out.println("'"+input+"' was interpreted into ");
-		// showArrays(interpreted, null, null, null, null, null);
-		for(int i=0; i<interpreted.length; i++){
-			int toAdd = interpreted[i];
-			// System.out.print(toAdd);
-			// System.out.print("*"+key);
-			toAdd = toAdd*key;
-			// System.out.println("="+toAdd);
-			toReturn[i] = toAdd;
-			// showArrays(toReturn, null, null, null, null, null);
-		}
-		return toReturn;
 	}
 	
 	public static int[][] XbyXencrypt(String input, int[][] key) {
@@ -113,9 +91,9 @@ public class MatriceEncryption {
 		keyColumns = key[0].length;
 		int spacesToAdd = input.length()%keyColumns;
 		if(!(spacesToAdd==0)){ spacesToAdd = keyColumns-(spacesToAdd); }
-		// System.out.println("'"+input+"' is to be encrypted with the key:");
-		// showArrays(null, key, null, null, null, null);
-		// System.out.println(spacesToAdd+" spaces need to be added to the end of the string");
+//		System.out.println("'"+input+"' is to be encrypted with the key:");
+//		showArrays(null, key, null, null, null, null);
+//		System.out.println(spacesToAdd+" spaces need to be added to the end of the string");
 	for(int i=0; i<spacesToAdd; i++){ input = input + ' '; }
 		int[] interpretedStep1 = new int[input.length()];
 		int interpCols = input.length()/keyColumns;
@@ -129,37 +107,20 @@ public class MatriceEncryption {
 				stringPos++;
 			}
 		}
-		// System.out.println("'"+input+"' was interpreted into:");
-		// showArrays(interpretedStep1, interpreted, null, null, null, null);
+//		System.out.println("'"+input+"' was interpreted into:");
+//		showArrays(interpretedStep1, interpreted, null, null, null, null);
 		for(int i=0; i<interpreted[0].length; i++){
 			for(int j=0; j<keyRows; j++){
 				int sum = 0;
 				for(int k=0; keyColumns>k; k++){
-					// System.out.print(key[j][k]+"*"+interpreted[k][i]+"+"+sum);
+//					System.out.print(key[j][k]+"*"+interpreted[k][i]+"+"+sum);
 					sum = sum+(key[j][k]*interpreted[k][i]);
-					// System.out.println("="+sum);
+//					System.out.println("="+sum);
 				}
 				toReturn[j][i] = sum;
-				// System.out.println("The array to be returned looks like:");
-				// showArrays(null, toReturn, null, null, null, null);
+//				System.out.println("The array to be returned looks like:");
+//				showArrays(null, toReturn, null, null, null, null);
 			}
-		}
-		return toReturn;
-	}
-
-	public String _1byXdecrypt(int[] input, int key) {
-		// System.out.println(showArray(input)+" is to be decrypted with the key "+key);
-		String toReturn = "";
-		for(int i=0; i<input.length; i++){
-			int toConvert = input[i];
-			// System.out.print(toConvert);
-			// System.out.print("/"+key);
-			toConvert = toConvert/key;
-			// System.out.println("="+toConvert);
-			char toAdd = (char) toConvert;
-			// System.out.print("The character "+toAdd+" is to be added to "+toReturn+" The result is: ");
-			toReturn = toReturn + toAdd;
-			// System.out.println(toReturn);
 		}
 		return toReturn;
 	}
@@ -176,36 +137,36 @@ public class MatriceEncryption {
 		for(int i=0; i<keyRows; i++){
 			for(int j=0; j<keyColumns; j++){
 				keyDouble[i][j] = (double) key[i][j];
-				// showArrays(null, key, null, null, null, null);
-				// showArrays(null, null, null, keyDouble, null, null);
+//				showArrays(null, key, null, null, null, null);
+//				showArrays(null, null, null, keyDouble, null, null);
 			}
 		}
 		double[][] keyInverse = inverse.invert(keyDouble);
 		int[][] interpreted = new int[input.length][input[0].length];
-		// System.out.println("The key is:");
-		// showArrays(null, key, null, null, null, null);
-		// System.out.println("The inverse of the key was found to be:");
-		// showArrays(null, null, null, keyInverse, null, null);
-		// System.out.println("It is to be multiplied by: ");
-		// showArrays(null, input, null, null, null, null);
-		// System.out.println("This should give the original interpreted matrix");
+//		System.out.println("The key is:");
+//		showArrays(null, key, null, null, null, null);
+//		System.out.println("The inverse of the key was found to be:");
+//		showArrays(null, null, null, keyInverse, null, null);
+//		System.out.println("It is to be multiplied by: ");
+//		showArrays(null, input, null, null, null, null);
+//		System.out.println("This should give the original interpreted matrix");
 		for(int i=0; i<interpreted[0].length; i++){
 			for(int j=0; j<keyRows; j++){
 				double sum = 0;
 				for(int k=0; keyColumns>k; k++){
-				//	 System.out.print(keyInverse[j][k]+"*"+input[k][i]+"+"+sum);
+//					System.out.print(keyInverse[j][k]+"*"+input[k][i]+"+"+sum);
 					sum = sum+(keyInverse[j][k]*input[k][i]);
-				//	 System.out.println("="+sum);
+//					System.out.println("="+sum);
 				}
 				interpreted[j][i] = (int) Math.round(sum);
-				// System.out.println("The array to be returned looks like:");
-				// showArrays(null, interpreted, null, null, null, null);
+//				System.out.println("The array to be returned looks like:");
+//				showArrays(null, interpreted, null, null, null, null);
 			}
 		}
 		for(int i=0; i<interpreted.length; i++){
 			for(int j=0; j<interpreted[i].length; j++){
 				toReturn = toReturn + (char) interpreted[i][j];
-				// System.out.println(toReturn);
+//				System.out.println(toReturn);
 			}
 		}
 		int toRemoveFrom = 0;
@@ -222,7 +183,7 @@ public class MatriceEncryption {
 			temp = temp +toReturn.charAt(i);
 		}
 		toReturn = temp;
-		// System.out.println("The final decryption is: "+toReturn);
+//		System.out.println("The final decryption is: "+toReturn);
 		return toReturn;
 	}
 

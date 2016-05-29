@@ -14,6 +14,9 @@ public class ButtonHandler implements ActionListener{
 	JTextArea textField;
 	
 	public ButtonHandler(JTextArea k, JTextArea t) {
+		if(k==null||t==null){
+			throw new NullPointerException("A null reference was passed");
+		}
 		keyField = k;
 		textField = t;
 	}
@@ -26,14 +29,14 @@ public class ButtonHandler implements ActionListener{
 	}
 
 	public String decrypt(int[][] key2, String text2) {
-		// System.out.println(text2+" is to be decrypted");
+//		System.out.println(text2+" is to be decrypted");
 		int[][] toDecrypt = Functionality.convertToMatrix(text2);
-		// System.out.println("The text converted to a matrix is:");
-		// MatriceEncryption.showArrays(null, toDecrypt, null, null, null, null);
-		// System.out.println("The key being used is:");
-		// MatriceEncryption.showArrays(null, key2, null, null, null, null);
+//		System.out.println("The text converted to a matrix is:");
+//		MatriceEncryption.showArrays(null, toDecrypt, null, null, null, null);
+//		System.out.println("The key being used is:");
+//		MatriceEncryption.showArrays(null, key2, null, null, null, null);
 		String decrypted = MatriceEncryption.XbyXdecrypt(toDecrypt, key2);
-		// System.out.println(decrypted+" was returned");
+//		System.out.println(decrypted+" was returned");
 		textField.setText(decrypted);
 		return decrypted;
 	}
@@ -50,34 +53,34 @@ public class ButtonHandler implements ActionListener{
 		if(!(keyField.getText().equals(""))){ key = Functionality.convertToMatrix(keyField.getText()); }
 		switch(which){
 		case 1: // Encrypt text
-			// System.out.println("Encrypt Message Pressed");
+//			System.out.println("Encrypt Message Pressed");
 			encrypt(key,text);
 			break;
 		case 2: // Decrypt text
-			// System.out.println("Decrypt Message Pressed");
+//			System.out.println("Decrypt Message Pressed");
 			decrypt(key,text);
 			break;
 		case 3: // Input key
-			// System.out.println("Input Key Pressed");
+//			System.out.println("Input Key Pressed");
 			toDisplay = "Please enter the name of the file to be retrieved";
 			Gui.getInfo(toDisplay, 1,'k', "","", keyField, textField);
 			break;
 		case 4: // Output key
-			// System.out.println("Output Key Pressed");
+//			System.out.println("Output Key Pressed");
 			toDisplay = "Please enter a name for the file to be created";
 			String _key = Functionality.convertFromMatrix(key);
-			// System.out.println("Key to output is: "+key);
+//			System.out.println("Key to output is: "+key);
 			Gui.getInfo(toDisplay, 0,'k', _key,"", keyField, textField);
 			break;
 		case 5: // Input text
-			// System.out.println("Input Text Pressed");
+//			System.out.println("Input Text Pressed");
 			toDisplay = "Please enter the name of the file to be retrieved";
 			Gui.getInfo(toDisplay, 1,'t', "","", keyField, textField);
 			break;
 		case 6: // Output text
-			// System.out.println("Output Text Pressed");
+//			System.out.println("Output Text Pressed");
 			toDisplay = "Please enter a name for the file to be created";
-			// System.out.println("Text to output is: "+text);
+//			System.out.println("Text to output is: "+text);
 			Gui.getInfo(toDisplay, 0,'t', "",text, keyField, textField);
 			break;
 			}

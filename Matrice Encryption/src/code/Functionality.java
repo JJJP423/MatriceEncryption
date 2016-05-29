@@ -34,7 +34,7 @@ public class Functionality {
 		}
 	
 	public static int[][] convertToMatrix(String text) {
-		// System.out.println(text+" is about to be converted to a matrix:");
+//		System.out.println(text+" is about to be converted to a matrix:");
 		int[][] toReturn;
 		ArrayList<ArrayList<Integer>> matrixToConvert = new ArrayList<ArrayList<Integer>>();
 		int toAdd = 0;
@@ -48,11 +48,11 @@ public class Functionality {
 			if(pos == ';'){
 				conLeng = toConvert.length();
 				for(int j=conLeng-1; j>=0; j--){
-					// System.out.print(toAdd+"+");
+//					System.out.print(toAdd+"+");
 					int toFind = (int) ((toConvert.charAt(j)-'0')*Math.pow(10, count));
 					toAdd = toAdd + toFind;
 					count++;
-					// System.out.println(toFind+"="+toAdd);
+//					System.out.println(toFind+"="+toAdd);
 				}
 				toConvert = "";
 				temp.add(toAdd);
@@ -60,19 +60,19 @@ public class Functionality {
 				count = 0;
 				encounteredNum = false;
 				matrixToConvert.add(temp);
-				// System.out.println(temp);
+//				System.out.println(temp);
 				temp = new ArrayList<Integer>();
-				// System.out.println("Adding new row");
+//				System.out.println("Adding new row");
 				continue;
 			}
 			if(pos == ',' && encounteredNum){ // Space, add number, then continue to next position in string
 				conLeng = toConvert.length();
 				for(int j=conLeng-1; j>=0; j--){
-					// System.out.print(toAdd+"+");
+//					System.out.print(toAdd+"+");
 					int toFind = (int) ((toConvert.charAt(j)-'0')*Math.pow(10, count));
 					toAdd = toAdd + toFind;
 					count++;
-					// System.out.println(toFind+"="+toAdd);
+//					System.out.println(toFind+"="+toAdd);
 				}
 				toConvert = "";
 				temp.add(toAdd);
@@ -88,20 +88,20 @@ public class Functionality {
 		}
 		int toReturnRows = matrixToConvert.size();
 		int toReturnColumns = matrixToConvert.get(0).size();
-		// System.out.println("Creating a matrix with "+toReturnRows+" rows and "+toReturnColumns+" columns");
+//		System.out.println("Creating a matrix with "+toReturnRows+" rows and "+toReturnColumns+" columns");
 		toReturn = new int[toReturnRows][toReturnColumns];
 		for(int i=0; i<matrixToConvert.size(); i++){
 			int[] tempInt = new int[matrixToConvert.get(i).size()];
 			for(int j=0; j<matrixToConvert.get(i).size(); j++){
 				int toPut = matrixToConvert.get(i).get(j).intValue();
-				// System.out.println("Putting "+toPut+" in position "+j);
+//				System.out.println("Putting "+toPut+" in position "+j);
 				tempInt[j] = toPut;
 			}
-			// MatriceEncryption.showArrays(tempInt, null, null, null, null, null);
-			// MatriceEncryption.showArrays(null, toReturn, null, null, null, null);
+//			MatriceEncryption.showArrays(tempInt, null, null, null, null, null);
+//			MatriceEncryption.showArrays(null, toReturn, null, null, null, null);
 			toReturn[i] = tempInt;
 		}
-		// MatriceEncryption.showArrays(null, toReturn, null, null, null, null);
+//		MatriceEncryption.showArrays(null, toReturn, null, null, null, null);
 		return toReturn;
 	}
 	
